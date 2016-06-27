@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -34,7 +35,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      * @Gedmo\Slug(fields={"title"}, unique=false)
      */
     private $slug;
@@ -78,11 +79,27 @@ class Post
     private $author;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="post")
+     * @ORM\JoinTable(name="post_category",
+     *      joinColumns={@ORM\JoinColumn(name="post", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category", referencedColumnName="id")}
+     * )
+     *
+     */
+    private $categories;
+
+    /**
      * Construct
      */
     public function __construct()
     {
+        $this->categories = new ArrayCollection();
         $this->publishedAt = new \DateTime();
+    }
+
+    public function addCategories(Category $category)
+    {
+        $this->categories[] = $category;
     }
 
     /**

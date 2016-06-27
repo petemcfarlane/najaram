@@ -30,7 +30,7 @@ class PostFixture implements FixtureInterface
         $user2->setUsername('Zander');
         $user2->setEmail('test@test2.com');
         $user2->setPassword('password2');
-        $post2->setTitle('Lorem ipsum dolor sit amet');
+        $post2->setTitle('Integer quam lectus');
         $post2->setBody('Integer quam lectus, congue quis nulla sed, blandit rutrum magna. Integer at orci nec massa sodales dictum eget interdum risus. Pellentesque ut lobortis ex, rutrum fermentum dui. Nullam consectetur maximus leo eu dictum. In eget consectetur risus. In enim dui, ullamcorper vel porta id, aliquam nec diam. Quisque ipsum ligula, venenatis eget urna ac, finibus suscipit sapien.');
         $post2->setImage('mountain.jpg');
         $post2->setAuthor($user2);
@@ -38,6 +38,49 @@ class PostFixture implements FixtureInterface
         $post2->setUpdatedAt($post2->getPublishedAt());
         $manager->persist($user2);
         $manager->persist($post2);
+
+        $post3 = new Post();
+        $user3 = new User();
+        $user3->setUsername('Jamie');
+        $user3->setEmail('test@test3.com');
+        $user3->setPassword('password3');
+        $post3->setTitle('Integer quam lectus');
+        $post3->setBody('Integer quam lectus, congue quis nulla sed, blandit rutrum magna. Integer at orci nec massa sodales dictum eget interdum risus. Pellentesque ut lobortis ex, rutrum fermentum dui. Nullam consectetur maximus leo eu dictum. In eget consectetur risus. In enim dui, ullamcorper vel porta id, aliquam nec diam. Quisque ipsum ligula, venenatis eget urna ac, finibus suscipit sapien.');
+        $post3->setImage('mtmayon.jpg');
+        $post3->setAuthor($user3);
+        $post3->setPublishedAt(new \DateTime());
+        $post3->setUpdatedAt($post3->getPublishedAt());
+        $manager->persist($user3);
+        $manager->persist($post3);
+
+        $post4 = new Post();
+        $user4 = new User();
+        $user4->setUsername('Kian');
+        $user4->setEmail('test@test4.com');
+        $user4->setPassword('password4');
+        $post4->setTitle(' Suspendisse et erat tincidunt');
+        $post4->setBody('Mauris tincidunt hendrerit accumsan. Suspendisse et erat tincidunt, euismod lacus nec, cursus tortor. Vestibulum quis turpis urna. Cras commodo dolor nec sapien feugiat volutpat. Nam sagittis est in quam cursus, id aliquet neque fringilla. Fusce tempus leo a felis vehicula elementum. Proin a dictum ipsum, at venenatis nunc. Pellentesque id ligula in arcu aliquam finibus. Etiam dictum, justo sit amet interdum accumsan, orci odio gravida nisi, rutrum tristique neque sapien eget nunc. Nullam suscipit erat ligula, a ornare nisl accumsan ac. Praesent tristique sem ac nulla rhoncus, nec sagittis velit egestas. Phasellus scelerisque diam nec urna blandit varius. Maecenas bibendum vel turpis ut commodo. Phasellus quis ex eu lorem semper porttitor. In ac tincidunt justo. Morbi vestibulum lectus tortor, ac varius ante convallis at. at orci nec massa sodales dictum eget interdum risus. Pellentesque ut lobortis ex, rutrum fermentum dui. Nullam consectetur maximus leo eu dictum. In eget consectetur risus. In enim dui, ullamcorper vel porta id, aliquam nec diam. Quisque ipsum ligula, venenatis eget urna ac, finibus suscipit sapien.');
+        $post4->setImage('mountain.jpg');
+        $post4->setAuthor($user4);
+        $post4->setPublishedAt(new \DateTime());
+        $post4->setUpdatedAt($post4->getPublishedAt());
+        $manager->persist($user4);
+        $manager->persist($post4);
+
+        $post5 = new Post();
+        $user5 = new User();
+        $user5->setUsername('Tim');
+        $user5->setEmail('test@test5.com');
+        $user5->setPassword('password5');
+        $post5->setTitle('Vursus tortor. Vestibulum quis turpis urna. ');
+        $post5->setBody('Mauris tincidunt hendrerit accumsan. Suspendisse et erat tincidunt, euismod lacus nec, cursus tortor. Vestibulum quis turpis urna. Cras commodo dolor nec sapien feugiat volutpat. Nam sagittis est in quam cursus, id aliquet neque fringilla. Fusce tempus leo a felis vehicula elementum. Proin a dictum ipsum, at venenatis nunc. Pellentesque id ligula in arcu aliquam finibus. Etiam dictum, justo sit amet interdum accumsan, orci odio gravida nisi, rutrum tristique neque sapien eget nunc. Nullam suscipit erat ligula, a ornare nisl accumsan ac. Praesent tristique sem ac nulla rhoncus, nec sagittis velit egestas. Phasellus scelerisque diam nec urna blandit varius. Maecenas bibendum vel turpis ut commodo. Phasellus quis ex eu lorem semper porttitor. In ac tincidunt justo. Morbi vestibulum lectus tortor, ac varius ante convallis at. at orci nec massa sodales dictum eget interdum risus. Pellentesque ut lobortis ex, rutrum fermentum dui. Nullam consectetur maximus leo eu dictum. In eget consectetur risus. In enim dui, ullamcorper vel porta id, aliquam nec diam. Quisque ipsum ligula, venenatis eget urna ac, finibus suscipit sapien.');
+        $post5->setImage('greenforest.jpg');
+        $post5->setAuthor($user5);
+        $post5->setPublishedAt(new \DateTime());
+        $post5->setUpdatedAt($post5->getPublishedAt());
+        $manager->persist($user5);
+        $manager->persist($post5);
+
 
         $manager->flush();
     }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,13 +23,9 @@ class Category
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post")
-     * @ORM\JoinTable(name="post_category",
-     *      joinColumns={@ORM\JoinColumn(name="category", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="post", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="categories")
      */
-    private $posts;
+    private $post;
     /**
      * @var string
      *
@@ -36,6 +33,27 @@ class Category
      */
     private $name;
 
+
+    public function __construct()
+    {
+        $this->post = new ArrayCollection();
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function addPost(Post $post)
+    {
+        $this->post[] = $post;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
 
     /**
      * Get id

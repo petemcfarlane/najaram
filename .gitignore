@@ -7,4 +7,5 @@
 /composer.lock
 /phpunit.xml
 .idea/
-/AppBundle/Resources/public/
+/src/AppBundle/Resources/public/
+/src/AppBundle/DataFixtures/
