@@ -1,0 +1,13 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}New Post{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <h2>Create a new Post</h2>
+        {{ form_start(form) }}
+        {{ tinymce_init({'use_callback_tinymce_init': true, 'theme': {'simple': {'menubar': false, 'height': 300}}}) }}
+        {{ form_end(form) }}
+    </div>
+    <div class="col-md-4">&nbsp;</div>
+{% endblock %}

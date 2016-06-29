@@ -102,6 +102,11 @@ class Post
         $this->categories[] = $category;
     }
 
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
     /**
      * Get id
      *

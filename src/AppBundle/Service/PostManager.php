@@ -5,7 +5,7 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Post;
 use AppBundle\Form\Type;
 use Doctrine\ORM\EntityManager;
-
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Class PostManager
  */
@@ -54,7 +54,7 @@ class PostManager
         ]);
 
         if (null === $post) {
-            throw $this->createNotFoundException('Post was not found.');
+            throw new NotFoundHttpException('Post was not found.');
         }
 
         return $post;

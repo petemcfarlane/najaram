@@ -9,6 +9,10 @@ app_blog:
     path:    /blog
     defaults: { _controller: AppBundle:Post:index }
 
+app_blog_new:
+    path:    /blog/new
+    defaults: { _controller: AppBundle:Post:new }
+
 app_blog_show:
     path:    /blog/{slug}
     defaults: { _controller: AppBundle:Post:show }
