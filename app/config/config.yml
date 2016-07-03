@@ -87,7 +87,20 @@ stof_doctrine_extensions:
        default:
            sluggable: true
 
-stfalcon_tinymce:
-        include_jquery: true
-        tinymce_jquery: true
-        use_callback_tinymce_init: true
+easy_admin:
+    site_name: 'Najaram.'
+    entities:
+        Post:
+         class: AppBundle\Entity\Post
+         form:
+             fields:
+                 # ...
+                 - { property: 'title' }
+                 - { property: 'body' }
+                 - { property: 'categories' }
+                 - { property: 'author' }
+        Category:
+         class: AppBundle\Entity\Category
+        User:
+         class: AppBundle\Entity\User
+

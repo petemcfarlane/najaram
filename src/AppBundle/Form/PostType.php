@@ -18,11 +18,7 @@ class PostType extends AbstractType
             ->add('title')
             ->add('slug')
             ->add('image')
-            ->add('body', 'textarea', [
-                'attr' => [
-                    'class' => 'tinymce'
-                ]
-            ])
+            ->add('body')
             ->add('author')
             ->add('categories')
         ;

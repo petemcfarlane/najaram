@@ -1,6 +1,10 @@
 fos_user:
     resource: routing/fos/user.yml
 
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    prefix:   /admin
+
 app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
