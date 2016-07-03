@@ -88,7 +88,9 @@ stof_doctrine_extensions:
            sluggable: true
 
 easy_admin:
-    site_name: 'Najaram.'
+    site_name: 'CMS Blog'
+    design:
+        brand_color: 'rgba(0, 51, 102, 0.85)'
     entities:
         Post:
          class: AppBundle\Entity\Post
@@ -96,7 +98,8 @@ easy_admin:
              fields:
                  # ...
                  - { property: 'title' }
-                 - { property: 'body' }
+                 - { property: 'image' }
+                 - { property: 'body', type: 'ckeditor' }
                  - { property: 'categories' }
                  - { property: 'author' }
         Category:
