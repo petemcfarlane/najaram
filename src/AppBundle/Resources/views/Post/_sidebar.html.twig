@@ -1,3 +1,13 @@
 <div class="latest-post">
-    <h4><a href="#">{{ post.title }}</a></h4>
+    <h2>Latest Posts</h2>
+    {% for post in latestPosts %}
+        <h4><a href="#">{{ post.title }}</a></h4>
+    {% endfor %}
+</div>
+<hr/>
+<div class="categories">
+    <h2>Categories</h2>
+    {% for category in categories %}
+        <h4>{{ category.name }}</h4>
+    {% endfor %}
 </div>

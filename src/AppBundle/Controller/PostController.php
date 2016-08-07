@@ -14,12 +14,14 @@ class PostController extends Controller
      */
     public function indexAction()
     {
-        $posts = $this->getPostManager()->showAllPosts();
+        $posts = $this->getPostManager()->showAllPost();
         $latestPosts = $this->getPostManager()->findLatest(5);
-
+        $categories = $this->getPostManager()->findAllCategories();
+        // var_dump($posts);
         return $this->render('AppBundle:Post:index.html.twig', [
             'posts' => $posts,
             'latestPosts' => $latestPosts,
+            'categories' => $categories
         ]);
     }
 
@@ -33,26 +35,6 @@ class PostController extends Controller
 
         return $this->render('AppBundle:Post:show.html.twig', [
             'post' => $post,
-        ]);
-    }
-
-    /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function newAction(Request $request)
-    {
-        $post = new Post();
-
-        $form = $this->createForm(PostType::class, $post);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirect($this->generateUrl(''));
-        }
-
-        return $this->render('AppBundle:Post:new.html.twig', [
-            'form' => $form->createView(),
         ]);
     }
 

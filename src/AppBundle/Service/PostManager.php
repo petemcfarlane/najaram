@@ -25,18 +25,12 @@ class PostManager
     }
 
 
-    public function createPosts(Post $posts)
-    {
-        $this->em->persist($posts);
-        $this->em->flush();
-    }
-
     /**
      * Find all Posts
      *
      * @return \AppBundle\Entity\Post[]|array
      */
-    public function showAllPosts()
+    public function showAllPost()
     {
         $posts = $this->em->getRepository('AppBundle:Post')->findAll();
 
@@ -58,6 +52,19 @@ class PostManager
         }
 
         return $post;
+    }
+
+    public function findAllCategories()
+    {
+        $categories = $this->em
+            ->getRepository('AppBundle:Category')
+            ->findAll();
+
+        if (null == $categories) {
+            throw new NotFoundHttpException('No categories was found.');
+        }
+
+        return $categories;
     }
 
     /**

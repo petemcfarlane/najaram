@@ -87,6 +87,14 @@ stof_doctrine_extensions:
        default:
            sluggable: true
 
+ivory_ck_editor:
+    jquery: true
+    configs:
+       my_config:
+           toolbar: full
+           enterMode: CKEDITOR.ENTER_BR
+
+
 easy_admin:
     site_name: 'CMS Blog'
     design:
@@ -106,4 +114,21 @@ easy_admin:
          class: AppBundle\Entity\Category
         User:
          class: AppBundle\Entity\User
+         form:
+             fields:
+                 - { property: 'username' }
+                 - { property: 'email' }
+                 - { property: 'password' }
+        Page:
+         class: AppBundle\Entity\Page
+         form:
+             fields:
+                 # ...
+                 - { property: 'title' }
+                 - { property: 'image' }
+                 - { property: 'body', type: 'ckeditor' }
+                 - { property: 'author' }
+
+vich_uploader:
+    db_driver: orm
 

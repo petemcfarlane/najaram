@@ -1,0 +1,12 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="post-container">
+            <h1>{{ page.title | capitalize }}</h1>
+            <p>{{ page.body | nl2br }}</p>
+        </div>
+    </div>
+{% endblock %}

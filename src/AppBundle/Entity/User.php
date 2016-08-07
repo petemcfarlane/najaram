@@ -46,6 +46,21 @@ class User extends BaseUser
     protected $posts;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Page", mappedBy="author", cascade={"remove"})
+     */
+    protected $pages;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->posts = new ArrayCollection();
+        $this->pages = new ArrayCollection();
+    }
+
+    /**
      * @return \AppBundle\Entity\Invitation
      */
     public function getInvitation()
@@ -94,5 +109,39 @@ class User extends BaseUser
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Add page
+     *
+     * @param \AppBundle\Entity\Page $page
+     *
+     * @return User
+     */
+    public function addPage(Page $page)
+    {
+        $this->pages[] = $page;
+
+        return $this;
+    }
+
+    /**
+     * Remove page
+     *
+     * @param \AppBundle\Entity\Page $page
+     */
+    public function removePage(Page $page)
+    {
+        $this->pages->removeElement($page);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPages()
+    {
+        return $this->pages;
     }
 }

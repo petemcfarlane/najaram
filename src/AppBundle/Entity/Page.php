@@ -2,18 +2,17 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Post
+ * Page
  *
- * @ORM\Table(name="post")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\Table(name="page")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PageRepository")
  */
-class Post
+class Page
 {
     /**
      * @var int
@@ -27,7 +26,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=150)
+     * @ORM\Column(name="title", type="string", length=255, unique=true)
      * @Assert\NotBlank()
      */
     private $title;
@@ -35,7 +34,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true, unique=true)
      * @Gedmo\Slug(fields={"title"}, unique=true)
      */
     private $slug;
@@ -43,7 +42,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=20)
+     * @ORM\Column(name="image", type="string", length=20, nullable=true)
      */
     private $image;
 
@@ -70,41 +69,20 @@ class Post
     private $updatedAt;
 
     /**
-     * @var int
+     * @var Author
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="pages")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
      * @Assert\NotBlank()
      */
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="post")
-     * @ORM\JoinTable(name="post_category",
-     *      joinColumns={@ORM\JoinColumn(name="post", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="category", referencedColumnName="id")}
-     * )
-     *
-     */
-    private $categories;
-
-    /**
      * Construct
      */
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
         $this->publishedAt = new \DateTime();
-    }
-
-    public function addCategories(Category $category)
-    {
-        $this->categories[] = $category;
-    }
-
-    public function getCategories()
-    {
-        return $this->categories;
     }
 
     /**
@@ -122,7 +100,7 @@ class Post
      *
      * @param string $title
      *
-     * @return Post
+     * @return Page
      */
     public function setTitle($title)
     {
@@ -146,7 +124,7 @@ class Post
      *
      * @param string $slug
      *
-     * @return Post
+     * @return Page
      */
     public function setSlug($slug)
     {
@@ -166,11 +144,35 @@ class Post
     }
 
     /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Page
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
      * Set body
      *
      * @param string $body
      *
-     * @return Post
+     * @return Page
      */
     public function setBody($body)
     {
@@ -194,7 +196,7 @@ class Post
      *
      * @param \DateTime $publishedAt
      *
-     * @return Post
+     * @return Page
      */
     public function setPublishedAt($publishedAt)
     {
@@ -218,7 +220,7 @@ class Post
      *
      * @param \DateTime $updatedAt
      *
-     * @return Post
+     * @return Page
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -240,11 +242,11 @@ class Post
     /**
      * Set author
      *
-     * @param string $author
+     * @param User $author
      *
-     * @return Post
+     * @return Page
      */
-    public function setAuthor($author)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
 
@@ -262,31 +264,11 @@ class Post
     }
 
     /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return Post
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
      * @return string
      */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
     public function __toString()
     {
         return $this->getTitle();
     }
 }
+
