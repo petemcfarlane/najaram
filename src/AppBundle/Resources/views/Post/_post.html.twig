@@ -1,9 +1,11 @@
+{% for post in posts %}
 <div class="post-container">
     <img src="{{ asset(['bundles/app/images/', post.image] | join) }}" alt="{{ post.image}}"/>
-    <h2><a href="{{ path('app_blog_show', {slug: postcontent.slug}) }}">{{ postcontent.title }}</a></h2>
-    <p><time datetime="{{ postcontent.publishedAt | date('c') }}">{{ postcontent.publishedAt | date }}</time></p>
-    {% for category in postcontent.categories %}
+    <h2><a href="{{ path('app_blog_show', {slug: post.slug}) }}">{{ post.title }}</a></h2>
+    <p><time datetime="{{ post.publishedAt | date('c') }}">{{ post.publishedAt | date }}</time></p>
+    {% for category in post.categories %}
         <p>Category: <span>{{ category.name }}</span></p>
     {% endfor %}
-    <p>{{ postcontent.body | truncate(300) }} <a href="{{ path('app_blog_show', {slug: postcontent.slug}) }}">Read more...</a></p>
+    <p>{{ post.body | truncate(300) }} <a href="{{ path('app_blog_show', {slug: post.slug}) }}">Read more...</a></p>
 </div>
+{% endfor %}

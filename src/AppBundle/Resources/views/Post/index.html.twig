@@ -4,11 +4,11 @@
 
 {% block content %}
     <div class="col-md-8">
-        {% for postcontent in posts %}
-            {{ include('AppBundle:Post:_post.html.twig', { post: postcontent }) }}
-        {% endfor %}
+
+        {{ include('AppBundle:Post:_post.html.twig', { posts: posts }) }}
+
     </div>
     <div class="col-md-4">
-        {{ include('AppBundle:Post:_sidebar.html.twig', { latestPosts: latestPosts, categories: categories }) }}
+        {{ include('AppBundle:Post:_sidebar.html.twig', { posts: posts, categories: categories }) }}
     </div>
 {% endblock %}

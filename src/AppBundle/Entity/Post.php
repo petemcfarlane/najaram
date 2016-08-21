@@ -79,7 +79,7 @@ class Post
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="post")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="post", fetch="EAGER")
      * @ORM\JoinTable(name="post_category",
      *      joinColumns={@ORM\JoinColumn(name="post", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="category", referencedColumnName="id")}

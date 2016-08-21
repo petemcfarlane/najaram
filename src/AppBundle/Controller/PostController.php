@@ -15,12 +15,11 @@ class PostController extends Controller
     public function indexAction()
     {
         $posts = $this->getPostManager()->showAllPost();
-        $latestPosts = $this->getPostManager()->findLatest(5);
         $categories = $this->getPostManager()->findAllCategories();
         // var_dump($posts);
         return $this->render('AppBundle:Post:index.html.twig', [
             'posts' => $posts,
-            'latestPosts' => $latestPosts,
+            'latestPosts' => [],
             'categories' => $categories
         ]);
     }

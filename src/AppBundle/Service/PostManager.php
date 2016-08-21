@@ -32,7 +32,7 @@ class PostManager
      */
     public function showAllPost()
     {
-        $posts = $this->em->getRepository('AppBundle:Post')->findAll();
+        $posts = $this->em->getRepository('AppBundle:Post')->findBy([], null, 3);
 
         return $posts;
     }
